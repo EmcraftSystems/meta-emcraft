@@ -13,8 +13,8 @@ SRC_URI = "${MX8_DOWNLOADS}/linux-emcraft-${PV}-mx8.tar.gz \
 	"
 
 # Released under the MIT license (see COPYING.MIT for the terms)
-SRC_URI[md5sum] = "327801724f9bea0de475fc3d97aa56cd"
-SRC_URI[sha256sum] = "32592ea680015968711afd09691ee60d7b71bd3ccc4b2d316a90421b6334211c"
+SRC_URI[md5sum] = "e06fe05220aa4138aeb89c133a6d03e9"
+SRC_URI[sha256sum] = "107cdcfc6f3db08d963ac7c2dfbddc0e0e11cf72175853fbf6caa8084ef75c81"
 
 S = "${WORKDIR}/linux"
 
@@ -29,3 +29,5 @@ addtask subst_cfg after do_unpack before do_patch
 # Remove videodev2.h from the installed kernel headers, it is provided by other package.
 # Otherwise, bitbake complains.
 IMX_UAPI_HEADERS_remove = "videodev2.h"
+
+SCMVERSION = "n"

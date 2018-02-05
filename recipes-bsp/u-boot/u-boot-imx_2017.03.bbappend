@@ -5,8 +5,8 @@
 DESCRIPTION = "i.MX U-Boot suppporting Emcraft IMX8M-SOM board."
 SRC_URI = "${MX8_DOWNLOADS}/u-boot-emcraft-${PV}-mx8.tar.gz"
 
-SRC_URI[md5sum] = "cc5c0e0bb22fb2a8293c4e8a9c6d4f81"
-SRC_URI[sha256sum] = "9f249460bd37fadd92dd30596bc00ca990442da17720ff8696b7845e9220c896"
+SRC_URI[md5sum] = "5f1a02dfe1646763acc9f0f83fc64323"
+SRC_URI[sha256sum] = "d3f81ec40f5131c32c08d73eb8eb25a9c7fc58387fc2006934a527ce46ddd50a"
 
 S = "${WORKDIR}/u-boot"
 SCMVERSION = "n"
