@@ -71,21 +71,18 @@
 		#reset-cells = <0>;
 	};
 
-	wm8524: wm8524 {
-		compatible = "wlf,wm8524";
-		clocks = <&clk IMX8MQ_CLK_SAI2_ROOT>;
-		clock-names = "mclk";
-		wlf,mute-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
+	osc: oscillator {
+		compatible = "fixed-clock";
+		#clock-cells = <1>;
+		clock-frequency  = <12000000>;
+		clock-output-names = "osc";
 	};
 
-	sound-wm8524 {
-		compatible = "fsl,imx-audio-wm8524";
-		model = "wm8524-audio";
+	sound-wm8985 {
+		compatible = "fsl,imx-audio-wm8985";
+		model = "wm8985-audio";
 		audio-cpu = <&sai2>;
-		audio-codec = <&wm8524>;
-		audio-routing =
-			"Line Out Jack", "LINEVOUTL",
-			"Line Out Jack", "LINEVOUTR";
+		audio-codec = <&wm8985_codec>;
 	};
 
 	sound-hdmi {
@@ -333,9 +330,8 @@
 			fsl,pins = <
 				MX8MQ_IOMUXC_SAI2_TXFS_SAI2_TX_SYNC	0xd6
 				MX8MQ_IOMUXC_SAI2_TXC_SAI2_TX_BCLK	0xd6
-				MX8MQ_IOMUXC_SAI2_MCLK_SAI2_MCLK	0xd6
 				MX8MQ_IOMUXC_SAI2_TXD0_SAI2_TX_DATA0	0xd6
-				MX8MQ_IOMUXC_GPIO1_IO08_GPIO1_IO8	0xd6
+				MX8MQ_IOMUXC_SAI2_RXD0_SAI2_RX_DATA0	0xd6
 			>;
 		};
 
@@ -535,6 +531,13 @@
 			};
 		};
 	};
+
+	wm8985_codec: wm8985@1a {
+		#sound-dai-cells = <0>;
+		compatible = "wm8985";
+		reg = <0x1a>;
+		clocks = <&osc 0>;
+	};
 };
 
 &i2c2 {
@@ -649,10 +652,10 @@
 &sai2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_sai2>;
-	assigned-clocks = <&clk IMX8MQ_CLK_SAI2_SRC>,
-			<&clk IMX8MQ_CLK_SAI2_DIV>;
-	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1_OUT>;
-	assigned-clock-rates = <0>, <24576000>;
+
+	clocks = <&clk IMX8MQ_CLK_SAI2_IPG>;
+	clock-names = "bus";
+
 	status = "okay";
 };
 
