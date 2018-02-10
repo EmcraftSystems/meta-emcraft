@@ -132,6 +132,12 @@
 			>;
 		};
 
+		pinctrl_dsi: dsigrp {
+			fsl,pins = <
+				MX8MQ_IOMUXC_NAND_DATA07_GPIO3_IO13	0x16
+			>;
+		};
+
 		pinctrl_fec1: fec1grp {
 			fsl,pins = <
 				MX8MQ_IOMUXC_ENET_MDC_ENET1_MDC		0x3
@@ -790,6 +796,11 @@
 
 &mipi_dsi {
 	status = "okay";
+
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_dsi>;
+	reset-gpios = <&gpio3 13 GPIO_ACTIVE_LOW>;
+
 	assigned-clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF_SRC>,
 			  <&clk IMX8MQ_CLK_DSI_CORE_SRC>,
 			  <&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
