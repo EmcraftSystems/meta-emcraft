@@ -10,7 +10,7 @@ DEPENDS = "qtdeclarative qtgraphicaleffects qtcanvas3d qtmultimedia"
 
 inherit qmake5 systemd
 
-SYSTEMD_PACKAGES = "${PN}"
+SYSTEMD_SERVICE_qt5-emcraft-demo="${PN}.service"
 
 do_install_append () {
 	install -d ${D}${systemd_system_unitdir}
