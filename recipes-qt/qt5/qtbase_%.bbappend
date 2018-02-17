@@ -3,3 +3,6 @@
 # to add Emcraft-specific Qt5 environment variables to /etc/profile.d/qt5.sh
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
+# Enable GIF support
+PACKAGECONFIG_append_pn-qtbase = " gif"

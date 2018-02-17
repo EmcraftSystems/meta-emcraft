@@ -9,6 +9,10 @@ IMAGE_INSTALL += "\
 	      usbutils	\
 	      i2c-tools \
 	      lcdtest	\
+	      opkg	\
+	      qtmultimedia	\
+	      qtcanvas3d	\
+	      qt5-emcraft-demo	\
 	      "
 
 # To exclude a package or group from the image:
