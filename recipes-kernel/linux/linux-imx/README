@@ -1,1 +1,4 @@
-Thie is an empty Git directory. imx8m-som.kernel and imx8m-som.dts should be copied here fro projects/rootfs/
+Internal note for Emcraft developers:
+
+This is an empty Git directory.
+imx8m-som.kernel and imx8m-som.dts should be copied here from projects/rootfs/

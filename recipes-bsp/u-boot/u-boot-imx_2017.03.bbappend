@@ -2,13 +2,14 @@
 
 # This appends to meta-fsl-bsp-release/imx/meta-bsp/recipes-bsp/u-boot/u-boot-imx_2017.03.bb
 
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+
 DESCRIPTION = "i.MX U-Boot suppporting Emcraft IMX8M-SOM board."
-SRC_URI = "${MX8_DOWNLOADS}/u-boot-emcraft-${PV}-mx8.tar.gz"
+SRC_URI = "${CONFIG_SRC_URI_UBOOT}"
 
-SRC_URI[md5sum] = "5f1a02dfe1646763acc9f0f83fc64323"
-SRC_URI[sha256sum] = "d3f81ec40f5131c32c08d73eb8eb25a9c7fc58387fc2006934a527ce46ddd50a"
+S = "${CONFIG_UBOOT_S}"
+SRCREV = "${CONFIG_UBOOT_GIT_REV}"
 
-S = "${WORKDIR}/u-boot"
 SCMVERSION = "n"
 
 do_deploy_append_mx8mq () {
