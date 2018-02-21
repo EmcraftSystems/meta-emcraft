@@ -13,6 +13,9 @@ IMAGE_INSTALL += "\
 	      qtmultimedia	\
 	      qtcanvas3d	\
 	      qt5-emcraft-demo	\
+	      avs-device-sdk	\
+	      socat	\
+	      links	\
 	      "
 
 # To exclude a package or group from the image:
