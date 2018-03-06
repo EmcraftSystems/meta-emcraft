@@ -1,0 +1,19 @@
+[Unit]
+Description=Amazon Alexa
+After=sound.target network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStartPre=-/bin/mv /usr/bin/pulseaudio /usr/bin/pulseaudio.disabled &>/dev/null
+ExecStartPre=/bin/echo 30000 > /proc/sys/vm/min_free_kbytes
+ExecStartPre=/usr/bin/amixer set 'Capture PGA' 255
+ExecStartPre=/usr/bin/amixer sset 'Headphone' 255
+ExecStartPre=/usr/bin/amixer sset 'Playback' 255
+ExecStartPre=/usr/sbin/alsactl store 0
+ExecStartPre=/bin/mkdir -p /run/alexa
+ExecStart=/usr/bin/socat PTY,link=/run/alexa/fd,echo=0 EXEC:"/home/root/Alexa_SDK/avs-sdk-client/SampleApp/src/SampleApp /AlexaClientSDKConfig.json.imx8m-som"
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
