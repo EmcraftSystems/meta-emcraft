@@ -6,7 +6,7 @@ LICENSE = "BSD & MIT"
 LIC_FILES_CHKSUM = "file://content/cube_3d.js;beginline=8;endline=47;md5=bfead8a4f8000c6205fa2b3c54b75a22"
 LIC_FILES_CHKSUM = "file://content/gl-matrix.js;beginline=8;endline=49;md5=bfead8a4f8000c6205fa2b3c54b75a22"
 
-DEPENDS = "qtdeclarative qtgraphicaleffects qtcanvas3d qtmultimedia"
+DEPENDS = "qtdeclarative qtgraphicaleffects qtcanvas3d qtmultimedia qtserialport"
 
 inherit qmake5 systemd
 

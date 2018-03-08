@@ -16,6 +16,7 @@ IMAGE_INSTALL += "\
 	      avs-device-sdk	\
 	      socat	\
 	      links	\
+	      qtserialport	\
 	      "
 
 # To exclude a package or group from the image:
