@@ -25,6 +25,9 @@ ACCEPT_FSL_EULA = "1"
 # BB_NUMBER_THREADS = "3"
 # PARALLEL_MAKE = "-j 3"
 
+# Make the module auto-loads at the system start, for M4 deme.
+KERNEL_MODULE_AUTOLOAD += "imx_rpmsg_tty"
+
 # Alexa
 LICENSE_FLAGS_WHITELIST ?= "commercial_gst-fluendo-mp3 \
                             commercial_gst-openmax \
