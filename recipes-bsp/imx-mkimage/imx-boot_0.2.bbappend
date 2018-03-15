@@ -10,22 +10,22 @@ require imx-mkimage-emcraft.inc
 # That's how Emcraft builds U-Boot in imx-mkimge/:
 # CFLAGS= make SOC=iMX8M clean
 # cp ../u-boot/u-boot-nodtb.bin iMX8M
-# cp ../u-boot/arch/arm/dts/emcraft-imx8m-som.dtb iMX8M/fsl-imx8mq-ddr3l-arm2.dtb
+# cp ../u-boot/arch/arm/dts/emcraft-imx8m-som.dtb iMX8M/fsl-imx8mq-evk.dtb
 # cp ../u-boot/u-boot.bin iMX8M
 # cp ../u-boot/spl/u-boot-spl.bin iMX8M
 # CFLAGS= make SOC=iMX8M flash_ddr3l_arm2
 
 # Redefine the build target
-IMXBOOT_TARGETS_mx8mq := "flash_ddr3l_arm2"
+IMXBOOT_TARGETS_mx8mq := "flash_evk"
 
 do_compile () {
     if [ "${SOC_TARGET}" = "iMX8M" ]; then
-        echo "8MQ LPDDR3 IMX8M-SOM boot binary build"
+        echo "8MQ DDR4L IMX8M-SOM boot binary build"
 
         cp ${DEPLOY_DIR_IMAGE}/signed_hdmi_imx8m.bin             ${S}/${SOC_TARGET}/
         cp ${DEPLOY_DIR_IMAGE}/u-boot-spl.bin-${MACHINE}-${UBOOT_CONFIG} ${S}/${SOC_TARGET}/u-boot-spl.bin
 	# A trick for odd U-Boot SDcard image build
-	cp ${DEPLOY_DIR_IMAGE}/${BOOT_TOOLS}/emcraft-imx8m-som.dtb  ${S}/${SOC_TARGET}/fsl-imx8mq-ddr3l-arm2.dtb
+	cp ${DEPLOY_DIR_IMAGE}/${BOOT_TOOLS}/emcraft-imx8m-som.dtb  ${S}/${SOC_TARGET}/fsl-imx8mq-evk.dtb
         cp ${DEPLOY_DIR_IMAGE}/${BOOT_TOOLS}/u-boot-nodtb.bin    ${S}/${SOC_TARGET}/
         cp ${DEPLOY_DIR_IMAGE}/${BOOT_TOOLS}/mkimage_uboot       ${S}/${SOC_TARGET}/
 
