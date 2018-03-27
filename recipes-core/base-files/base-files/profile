@@ -32,3 +32,6 @@ export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
 
 umask 022
 
+# For the proper shell lines wrapping
+shopt -s checkwinsize
+resize
