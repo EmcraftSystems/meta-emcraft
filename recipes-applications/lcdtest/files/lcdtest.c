@@ -81,7 +81,18 @@ static void fb_putpixel(void *buf, int x, int y, __u32 color)
 		return;
 
 	if (vinfo.bits_per_pixel == 32) {
-		((__u32 *)buf)[y * vinfo.xres + x] = color;
+		/*
+		 * We set the bits 24..31 to 0xFF which represents opacity in
+		 * ARGB8888 to make the image 100% opaque. This does not break
+		 * compatibility with platforms that do not support alpha
+		 * component (e.g. Kinetis K61/K70) because their LCD
+		 * controllers do not look in this fourth byte.
+		 */
+		((__u32 *)buf)[y * vinfo.xres + x] = 0xFF000000 | color;
+	} else if (vinfo.bits_per_pixel == 24) {
+		((__u8 *)buf)[3 * (y * vinfo.xres + x) + 0] = color >>  0;
+		((__u8 *)buf)[3 * (y * vinfo.xres + x) + 1] = color >>  8;
+		((__u8 *)buf)[3 * (y * vinfo.xres + x) + 2] = color >> 16;
 	} else if (vinfo.bits_per_pixel == 16) {
 		((__u16 *)buf)[y * vinfo.xres + x] =
 			CONVERT_COLOR_COMPONENT(color, 16, R) |
@@ -181,9 +192,9 @@ int main(int argc, char *argv[])
 {
 	int fd;
 
-	static const char *option_string = "p";
+	static const char *option_string = "pc";
 	int opt;
-	int run_perf_test = 0;
+	int run_perf_test = 0, cyclic_on_exit = 0;
 
 	/*
 	 * Parse the command-line options
@@ -193,6 +204,9 @@ int main(int argc, char *argv[])
 		switch (opt) {
 		case 'p':
 			run_perf_test = 1;
+			break;
+		case 'c':
+			cyclic_on_exit = 1;
 			break;
 		default:
 			break;
@@ -227,9 +241,10 @@ int main(int argc, char *argv[])
 	}
 
 	printf("%dx%d, %dbpp\n", vinfo.xres, vinfo.yres, vinfo.bits_per_pixel);
-	if (vinfo.bits_per_pixel != 32 && vinfo.bits_per_pixel != 16) {
+	if (vinfo.bits_per_pixel != 32 && vinfo.bits_per_pixel != 24 &&
+	    vinfo.bits_per_pixel != 16) {
 		fprintf(stderr,
-			"This program supports only 16bpp and 32bpp "
+			"This program supports only 16/24/32bpp"
 			"framebuffers.\n");
 		exit(4);
 	}
@@ -261,6 +276,11 @@ int main(int argc, char *argv[])
 	 * Draw the test picture
 	 */
 	test_picture();
+
+	if (cyclic_on_exit) {
+		printf("Press Ctrl-C to exit\n");
+		while (1);
+	}
 
 	munmap(fbp, screensize);
 	close(fd);
