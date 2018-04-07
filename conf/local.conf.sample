@@ -22,8 +22,8 @@ MX8_DOWNLOADS = "http://localhost"
 ACCEPT_FSL_EULA = "1"
 
 # Be nice to others
-# BB_NUMBER_THREADS = "3"
-# PARALLEL_MAKE = "-j 3"
+BB_NUMBER_THREADS = "1"
+PARALLEL_MAKE = "-j 3"
 
 # Make the module auto-loads at the system start, for M4 deme.
 KERNEL_MODULE_AUTOLOAD += "imx_rpmsg_tty"
@@ -68,7 +68,7 @@ PREFERRED_VERSION_qt5-emcraft-demo = "git"
 #CONFIG_LINUX_LOCALVERSION = "-imx8m-betaX"
 
 # Linux: Development build
-CONFIG_SRC_URI_KERNEL = "git://ocean.emcraft.com/SR/git/A2F/linux-upstream.git;protocol=ssh;branch=imx8m-beta-4.9.51"
+CONFIG_SRC_URI_KERNEL = "git://ocean.emcraft.com/SR/git/A2F/linux-upstream.git;protocol=ssh;branch=imx8m-ga-4.9.51"
 CONFIG_LINUX_S = "${WORKDIR}/git"
 CONFIG_LINUX_GIT_REV = "${AUTOREV}"
 
@@ -78,7 +78,7 @@ CONFIG_LINUX_GIT_REV = "${AUTOREV}"
 # UBOOT_LOCALVERSION = "-imx8m-betaX"
 
 # U-Boot: development build
-CONFIG_SRC_URI_UBOOT = "git://ocean.emcraft.com/SR/git/A2F/u-boot-vybrid.git;protocol=ssh;branch=imx8m-beta-4.9.51"
+CONFIG_SRC_URI_UBOOT = "git://ocean.emcraft.com/SR/git/A2F/u-boot-vybrid.git;protocol=ssh;branch=imx8m-ga-4.9.51"
 CONFIG_UBOOT_S = "${WORKDIR}/git"
 CONFIG_UBOOT_GIT_REV = "${AUTOREV}"
 
@@ -88,6 +88,10 @@ CONFIG_UBOOT_GIT_REV = "${AUTOREV}"
 #CONFIG_IMXMKIM_S = "${WORKDIR}/imx-mkimage"
 
 # imx-mkimage: development build
-CONFIG_SRC_URI_IMXMKIM = "git://ocean.emcraft.com/SR/git/A2F/imx-mkimage.git;protocol=ssh;branch=master"
+CONFIG_SRC_URI_IMXMKIM = "git://ocean.emcraft.com/SR/git/A2F/imx-mkimage.git;protocol=ssh;branch=imx8m-ga-4.9.51"
 CONFIG_IMXMKIM_S = "${WORKDIR}/git"
 CONFIG_IMXMKIM_GIT_REV = "${AUTOREV}"
+
+# Force version without Wayland dependency
+GRAPHICS_VERSION_mx8 = "6.2.4.p0.2"
+
