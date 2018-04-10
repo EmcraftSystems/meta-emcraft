@@ -17,6 +17,7 @@ IMAGE_INSTALL += "\
 	      socat	\
 	      links	\
 	      qtserialport	\
+	      flashrom	\
 	      "
 
 # To exclude a package or group from the image:
