@@ -51,18 +51,6 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 
-		sw1a_reg: sw1ab {
-			regulator-min-microvolt = <300000>;
-			regulator-max-microvolt = <1875000>;
-			regulator-always-on;
-		};
-
-		sw1c_reg: sw1c {
-			regulator-min-microvolt = <300000>;
-			regulator-max-microvolt = <1875000>;
-			regulator-always-on;
-		};
-
 		reg_usdhc2_vmmc: usdhc2_vmmc {
 			compatible = "regulator-fixed";
 			regulator-name = "VSD_3V3";
@@ -910,11 +898,13 @@
 };
 
 &gpu_pd {
-	power-supply = <&sw1a_reg>;
+// TBD: define correct power supply
+//	power-supply = <&sw1a_reg>;
 };
 
 &vpu_pd {
-	power-supply = <&sw1c_reg>;
+// TBD: define correct power supply
+//	power-supply = <&sw1c_reg>;
 };
 
 &gpu {
