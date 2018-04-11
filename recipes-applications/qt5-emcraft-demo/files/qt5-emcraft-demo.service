@@ -4,7 +4,8 @@ Description=Emcraft Qt5 Demo
 [Service]
 Environment="QT_QPA_EGLFS_FORCE888=1"
 Environment="QT_EGLFS_IMX6_NO_FB_MULTI_BUFFER=1"
-Environment="QT_QPA_PLATFORM=eglfs"
+Environment="QT_QPA_PLATFORM=wayland"
+Environment="XDG_RUNTIME_DIR=/run/user/0"
 ExecStart=/usr/bin/Qt5_EmcraftDemo
 Restart=on-failure
 RestartSec=10
