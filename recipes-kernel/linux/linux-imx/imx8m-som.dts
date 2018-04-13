@@ -23,6 +23,7 @@
  * Define this to enable i2c3 channel instead of pwm4 on IMX8M-SOM-BSB
  * #define I2C3_ENABLE
  */
+#define I2C3_ENABLE
 
 /*
  * Define this to enable camera on CSI2 channel instead of CSI1
