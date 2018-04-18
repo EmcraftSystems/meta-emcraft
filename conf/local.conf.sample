@@ -1,5 +1,5 @@
 MACHINE ??= 'imx8m-som'
-DISTRO ?= 'fsl-imx-fb'
+DISTRO ?= 'fsl-imx-wayland'
 PACKAGE_CLASSES ?= "package_ipk"
 EXTRA_IMAGE_FEATURES ?= "debug-tweaks package-management"
 USER_CLASSES ?= "buildstats image-mklibs image-prelink"
@@ -22,8 +22,8 @@ MX8_DOWNLOADS = "http://localhost"
 ACCEPT_FSL_EULA = "1"
 
 # Be nice to others
-BB_NUMBER_THREADS = "1"
-PARALLEL_MAKE = "-j 3"
+#BB_NUMBER_THREADS = "1"
+#PARALLEL_MAKE = "-j 3"
 
 # Make the module auto-loads at the system start, for M4 deme.
 KERNEL_MODULE_AUTOLOAD += "imx_rpmsg_tty"
@@ -57,41 +57,40 @@ PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
 
 # Sources Configuration Section
 
-PREFERRED_VERSION_qt5-emcraft-demo = "git"
+#PREFERRED_VERSION_qt5-emcraft-demo = "git"
 # For release
-#PREFERRED_VERSION_qt5-emcraft-demo = "0.9"
+PREFERRED_VERSION_qt5-emcraft-demo = "0.9"
 
 # Linux: release version builds from tarballs
-#CONFIG_SRC_URI_KERNEL = "file://linux-emcraft-${PV}-mx8.tar.gz"
-#CONFIG_LINUX_S = "${WORKDIR}/linux"
-
-#CONFIG_LINUX_LOCALVERSION = "-imx8m-betaX"
+CONFIG_SRC_URI_KERNEL = "file://linux-emcraft-${PV}-mx8.tar.gz"
+CONFIG_LINUX_S = "${WORKDIR}/linux"
+#CONFIG_LINUX_LOCALVERSION = "-imx8m-beta8"
 
 # Linux: Development build
-CONFIG_SRC_URI_KERNEL = "git://ocean.emcraft.com/SR/git/A2F/linux-upstream.git;protocol=ssh;branch=imx8m-ga-4.9.51"
-CONFIG_LINUX_S = "${WORKDIR}/git"
-CONFIG_LINUX_GIT_REV = "${AUTOREV}"
+#CONFIG_SRC_URI_KERNEL = "git://ocean.emcraft.com/SR/git/A2F/linux-upstream.git;protocol=ssh;branch=imx8m-ga-4.9.51"
+#CONFIG_LINUX_S = "${WORKDIR}/git"
+#CONFIG_LINUX_GIT_REV = "${AUTOREV}"
 
 # U-Boot: release version builds from tarballs
-#CONFIG_SRC_URI_UBOOT = "file://u-boot-emcraft-${PV}-mx8.tar.gz"
-#CONFIG_UBOOT_S = "${WORKDIR}/u-boot"
+CONFIG_SRC_URI_UBOOT = "file://u-boot-emcraft-${PV}-mx8.tar.gz"
+CONFIG_UBOOT_S = "${WORKDIR}/u-boot"
 # UBOOT_LOCALVERSION = "-imx8m-betaX"
 
 # U-Boot: development build
-CONFIG_SRC_URI_UBOOT = "git://ocean.emcraft.com/SR/git/A2F/u-boot-vybrid.git;protocol=ssh;branch=imx8m-ga-4.9.51"
-CONFIG_UBOOT_S = "${WORKDIR}/git"
-CONFIG_UBOOT_GIT_REV = "${AUTOREV}"
+#CONFIG_SRC_URI_UBOOT = "git://ocean.emcraft.com/SR/git/A2F/u-boot-vybrid.git;protocol=ssh;branch=imx8m-ga-4.9.51"
+#CONFIG_UBOOT_S = "${WORKDIR}/git"
+#CONFIG_UBOOT_GIT_REV = "${AUTOREV}"
 
 
 # imx-mkimage: release version builds from tarballs
-#CONFIG_SRC_URI_IMXMKIM = "file://imx-mkimage-emcraft.tar.gz"
-#CONFIG_IMXMKIM_S = "${WORKDIR}/imx-mkimage"
+CONFIG_SRC_URI_IMXMKIM = "file://imx-mkimage-emcraft.tar.gz"
+CONFIG_IMXMKIM_S = "${WORKDIR}/imx-mkimage"
 
 # imx-mkimage: development build
-CONFIG_SRC_URI_IMXMKIM = "git://ocean.emcraft.com/SR/git/A2F/imx-mkimage.git;protocol=ssh;branch=imx8m-ga-4.9.51"
-CONFIG_IMXMKIM_S = "${WORKDIR}/git"
-CONFIG_IMXMKIM_GIT_REV = "${AUTOREV}"
+#CONFIG_SRC_URI_IMXMKIM = "git://ocean.emcraft.com/SR/git/A2F/imx-mkimage.git;protocol=ssh;branch=imx8m-ga-4.9.51"
+#CONFIG_IMXMKIM_S = "${WORKDIR}/git"
+#CONFIG_IMXMKIM_GIT_REV = "${AUTOREV}"
 
 # Force version without Wayland dependency
-GRAPHICS_VERSION_mx8 = "6.2.4.p0.2"
+#GRAPHICS_VERSION_mx8 = "6.2.4.p0.2"
 
