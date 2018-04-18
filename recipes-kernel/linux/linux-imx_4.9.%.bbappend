@@ -29,3 +29,6 @@ addtask subst_cfg after do_unpack before do_copy_defconfig
 # Otherwise, bitbake complains.
 IMX_UAPI_HEADERS_remove = "videodev2.h"
 LOCALVERSION = "${CONFIG_LINUX_LOCALVERSION}"
+
+# Disable SCM to avoid hassle with the kernel modules
+SCMVERSION = "n"
