@@ -1,0 +1,5 @@
+#!/bin/sh
+export QT_QPA_PLATFORM=wayland
+export QT_QPA_EGLFS_FORCE888=1
+export QT_EGLFS_IMX6_NO_FB_MULTI_BUFFER=1
+
