@@ -766,6 +766,7 @@
 	reset-gpio = <&gpio3 10 GPIO_ACTIVE_LOW>;
 	ext_osc = <1>;
 	hard-wired = <1>;
+	clk2-gen;
 	status = "okay";
 };
 
