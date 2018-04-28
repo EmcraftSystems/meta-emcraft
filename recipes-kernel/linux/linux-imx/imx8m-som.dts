@@ -33,8 +33,8 @@
 #include "freescale/fsl-imx8mq.dtsi"
 
 / {
-	model = "Freescale i.MX8MQ EVK";
-	compatible = "fsl,imx8mq-evk", "fsl,imx8mq";
+	model = "Emcraft i.MX8M SOM";
+	compatible = "emcraft,imx8m-som", "fsl,imx8mq";
 
 	bcmdhd_wlan_0: bcmdhd_wlan@0 {
 		compatible = "android,bcmdhd_wlan";
@@ -135,7 +135,7 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_csiclk>;
 
-	imx8mq-evk {
+	imx8m-som {
 		pinctrl_csi1: csi1grp {
 			fsl,pins = <
 				MX8MQ_IOMUXC_GPIO1_IO07_GPIO1_IO7		0x19
