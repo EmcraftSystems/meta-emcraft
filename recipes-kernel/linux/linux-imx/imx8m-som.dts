@@ -116,6 +116,7 @@
 		spdif-controller = <&spdif1>;
 		spdif-out;
 		spdif-in;
+		status = "disabled";
 	};
 
 	sound-hdmi-arc {
