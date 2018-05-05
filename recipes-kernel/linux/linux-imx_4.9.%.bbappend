@@ -10,6 +10,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 SRC_URI = "${CONFIG_SRC_URI_KERNEL} \
 	file://imx8m-som.kernel \
 	file://imx8m-som.dts \
+	file://imx8m-som-frd55.dts \
 	"
 
 # Released under the MIT license (see COPYING.MIT for the terms)
@@ -19,7 +20,7 @@ SRCREV = "${CONFIG_LINUX_GIT_REV}"
 
 # For linux-imx build, kernel configuration installs as defconfig
 do_subst_cfg() {
-	cp -a ${WORKDIR}/imx8m-som.dts ${S}/arch/arm64/boot/dts/
+	cp -a ${WORKDIR}/*.dts ${S}/arch/arm64/boot/dts/
 	cp -a ${WORKDIR}/imx8m-som.kernel ${S}/arch/arm64/configs/defconfig
 }
 
