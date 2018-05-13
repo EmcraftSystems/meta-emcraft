@@ -9,8 +9,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 # IMX8M-SOM kernel configuration and Device Tree
 SRC_URI = "${CONFIG_SRC_URI_KERNEL} \
 	file://imx8m-som.kernel \
-	file://imx8m-som.dts \
-	file://imx8m-som-frd55.dts \
+	file://*.dts \
 	"
 
 # Released under the MIT license (see COPYING.MIT for the terms)
