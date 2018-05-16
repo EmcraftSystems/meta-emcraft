@@ -36,8 +36,8 @@ modules:
 		-C $(KERNELDIR) modules_install
 	tar -C /$(RFS_BUILD_DIR) -c -z -f kernel_modules.tgz lib
 
-%.dtb:		$(KERNEL_BOOT)/dts %.dts
-	cp $*.$(KERNEL_DTS) $(KERNEL_BOOT)/dts/
+%.dtb:		$(wildcard *.dts)
+	cp *.$(KERNEL_DTS) $(KERNEL_BOOT)/dts/
 	$(MAKE) -C $(KERNELDIR) $@
 	mv $(KERNEL_BOOT)/dts/$@ ./$@
 
