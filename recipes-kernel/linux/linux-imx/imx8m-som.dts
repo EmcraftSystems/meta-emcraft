@@ -422,6 +422,12 @@
 			>;
 		};
 
+		pinctrl_rtc: rtcirq {
+			fsl,pins = <
+				MX8MQ_IOMUXC_SAI3_RXC_GPIO4_IO29	0xC6
+			>;
+		};
+
 		pinctrl_spi1: spi1 {
 			fsl,pins = <
 				MX8MQ_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK	0x0f
@@ -721,6 +727,16 @@
 		compatible = "nau8820";
 		reg = <0x1a>;
 		clocks = <&sound_osc 0>;
+	};
+
+	ds1339: rtc@68 {
+		compatible = "mxim,ds1339";
+		reg = <0x68>;
+		/* RTC DS1339U-33+ nIRQ GPIO4_IO29 */
+		pinctrl-0 = <&pinctrl_rtc>;
+		interrupt-parent = <&gpio4>;
+		interrupts = <29 IRQ_TYPE_EDGE_FALLING>;
+		status = "okay";
 	};
 };
 
