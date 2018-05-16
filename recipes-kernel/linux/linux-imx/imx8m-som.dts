@@ -76,6 +76,8 @@
 
 	modem_reset: modem-reset {
 		compatible = "gpio-reset";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_modem_reset>;
 		reset-gpios = <&gpio3 6 GPIO_ACTIVE_LOW>;
 		reset-delay-us = <2000>;
 		reset-post-delay-ms = <40>;
@@ -255,8 +257,6 @@
 				MX8MQ_IOMUXC_UART2_RXD_UART2_DCE_RX		0x49
 				MX8MQ_IOMUXC_UART4_RXD_UART2_DCE_CTS_B		0x49
 				MX8MQ_IOMUXC_UART4_TXD_UART2_DCE_RTS_B		0x49
-				/* BT_REG_ON */
-				MX8MQ_IOMUXC_NAND_DATA00_GPIO3_IO6		0x19
 			>;
 		};
 
@@ -273,6 +273,14 @@
 				MX8MQ_IOMUXC_ECSPI2_MOSI_UART4_DCE_TX		0x49
 				MX8MQ_IOMUXC_ECSPI2_MISO_UART4_DCE_CTS_B	0x49
 				MX8MQ_IOMUXC_ECSPI2_SS0_UART4_DCE_RTS_B		0x49
+				MX8MQ_IOMUXC_GPIO1_IO00_ANAMIX_REF_CLK_32K	0x49
+			>;
+		};
+
+		pinctrl_modem_reset: modem_resetgrp {
+			fsl,pins = <
+				/* BT_REG_ON */
+				MX8MQ_IOMUXC_NAND_DATA00_GPIO3_IO6		0x19
 			>;
 		};
 
@@ -830,6 +838,7 @@
 	assigned-clocks = <&clk IMX8MQ_CLK_UART4_SRC>;
 	assigned-clock-parents = <&clk IMX8MQ_CLK_25M>;
 	fsl,uart-has-rtscts;
+	resets = <&modem_reset>;
 	status = "okay";
 };
 
