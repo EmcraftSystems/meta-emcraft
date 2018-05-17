@@ -115,6 +115,43 @@
 		spdif-controller = <&spdif2>;
 		spdif-in;
 	};
+
+	leds {
+		compatible = "gpio-leds";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_gpio_leds>;
+		status = "okay";
+
+		led1 {
+			label = "LED 1";
+			gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+		led2 {
+			label = "LED 2";
+			gpios = <&gpio1 13 GPIO_ACTIVE_HIGH>;
+			default-state = "off";
+		};
+	};
+
+	gpio-keys {
+		compatible = "gpio-keys";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_gpio_keys>;
+
+		btn1 {
+			label = "BTN 1";
+			gpios = <&gpio4 21 GPIO_ACTIVE_LOW>;
+			gpio-key,wakeup;
+			linux,code = <KEY_VOLUMEUP>;
+		};
+		btn2 {
+			label = "BTN 2";
+			gpios = <&gpio4 22 GPIO_ACTIVE_LOW>;
+			gpio-key,wakeup;
+			linux,code = <KEY_VOLUMEDOWN>;
+		};
+	};
 };
 
 &clk {
@@ -431,6 +468,20 @@
 		pinctrl_csiclk: csiclk {
 			fsl,pins = <
 				MX8MQ_IOMUXC_GPIO1_IO14_CCMSRCGPCMIX_CLKO1	0x59
+			>;
+		};
+
+		pinctrl_gpio_leds: gpioleds {
+			fsl,pins = <
+				MX8MQ_IOMUXC_SAI5_RXFS_GPIO3_IO19	0x16
+				MX8MQ_IOMUXC_GPIO1_IO13_GPIO1_IO13	0x16
+			>;
+		};
+
+		pinctrl_gpio_keys: gpiokeys {
+			fsl,pins = <
+				MX8MQ_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x16
+				MX8MQ_IOMUXC_SAI2_RXC_GPIO4_IO22	0x16
 			>;
 		};
 	};
