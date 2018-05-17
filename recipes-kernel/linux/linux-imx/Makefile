@@ -34,7 +34,7 @@ modules:
 	LDFLAGS="" $(MAKE) -C $(INSTALL_ROOT)/linux modules
 	LDFLAGS="" $(MAKE) INSTALL_MOD_PATH=`pwd`/$(RFS_BUILD_DIR) \
 		-C $(KERNELDIR) modules_install
-	tar -C /$(RFS_BUILD_DIR) -c -z -f kernel_modules.tgz lib
+	tar -C $(RFS_BUILD_DIR) -c -z -f kernel_modules.tgz lib
 
 %.dtb:		$(wildcard *.dts)
 	cp *.$(KERNEL_DTS) $(KERNEL_BOOT)/dts/
