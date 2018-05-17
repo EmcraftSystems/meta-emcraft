@@ -49,13 +49,6 @@
 };
 
 &i2c1 {
-	ov5640_mipi: ov5640_mipi@3c {
-		status = "disabled";
-	};
-
-	ov5640_mipi2: ov5640_mipi2@3c {
-		status = "disabled";
-	};
 	goodix_ts@5d {
 		compatible = "goodix,gt1x";
 		pinctrl-names = "default";
