@@ -8,8 +8,8 @@
 # $ make myboard.Image	# Build Image using myboard.kernel
 # $ make myboard.dtb	# Build DTB using myboard.dts
 
-INSTALL_ROOT	:= /work/psl/IMX8M/linux-imx6sx-2.3.4
-SAMPLE		:= imx8m-som
+INSTALL_ROOT	?= /work/psl/IMX8M/linux-imx6sx-2.3.4
+SAMPLE		?= imx8m-som
 
 KERNEL_IMAGE	:= Image
 MAKE		:= make -j10
