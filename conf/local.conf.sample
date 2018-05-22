@@ -94,3 +94,4 @@ CONFIG_IMXMKIM_S = "${WORKDIR}/imx-mkimage"
 # Force version without Wayland dependency
 #GRAPHICS_VERSION_mx8 = "6.2.4.p0.2"
 
+#EMCRAFT_DISTRO_VERSION ?= "(NXP ${DISTRO_VERSION})"
