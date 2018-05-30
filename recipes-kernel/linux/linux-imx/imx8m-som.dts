@@ -36,6 +36,10 @@
 	model = "Emcraft i.MX8M SOM";
 	compatible = "emcraft,imx8m-som", "fsl,imx8mq";
 
+	aliases {
+	    spi0 = &ecspi1;
+	};
+
 	bcmdhd_wlan_0: bcmdhd_wlan@0 {
 		compatible = "android,bcmdhd_wlan";
 		bcmdhd_fw = "/lib/firmware/bcm/1CX_BCM4356/fw_bcmdhd.bin";
