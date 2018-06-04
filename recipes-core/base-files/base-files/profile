@@ -34,4 +34,5 @@ umask 022
 
 # For the proper shell lines wrapping
 shopt -s checkwinsize
-resize
+# Commented out, Eclipse remote is confused by "resize"
+#resize

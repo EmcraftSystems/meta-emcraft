@@ -18,6 +18,8 @@ IMAGE_INSTALL += "\
 	      links	\
 	      qtserialport	\
 	      flashrom	\
+	      openssh-sftp-server	\
+	      glibc-utils	\
 	      "
 
 # To exclude a package or group from the image:
