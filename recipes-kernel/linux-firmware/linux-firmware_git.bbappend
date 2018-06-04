@@ -19,3 +19,10 @@ do_install_append () {
     cp ${WORKDIR}/ibt-12-16.ddc ${D}${nonarch_base_libdir}/firmware/intel
     cp ${WORKDIR}/ibt-12-16.sfi ${D}${nonarch_base_libdir}/firmware/intel
 }
+
+PACKAGES =+ "${PN}-intel-8265"
+
+FILES_${PN}-intel-8265 = " \
+  ${nonarch_base_libdir}/firmware/intel/ibt-12-16.ddc \
+  ${nonarch_base_libdir}/firmware/intel/ibt-12-16.sfi \
+  "

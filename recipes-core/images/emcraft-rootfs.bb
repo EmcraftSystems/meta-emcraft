@@ -20,6 +20,8 @@ IMAGE_INSTALL += "\
 	      flashrom	\
 	      openssh-sftp-server	\
 	      glibc-utils	\
+	      linux-firmware-iwlwifi-8265 \
+	      linux-firmware-intel-8265 \
 	      "
 
 # To exclude a package or group from the image:
