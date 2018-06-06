@@ -801,17 +801,6 @@
 #else
 	status = "disabled";
 #endif
-
-	touch: touch@4a { /* atmxt2952t2 */
-		compatible = "atmel,maxtouch";
-		reg = <0x4a>;
-
-		wakeup-source;
-
-		interrupt-parent = <&gpio3>;
-		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
-		resets = <&touch_reset>; /* active-low GPIO3_IO9, 10 ms delay */
-	};
 };
 
 &i2c4 {
