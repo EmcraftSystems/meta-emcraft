@@ -29,7 +29,6 @@ KERNELDIR	:=  $(INSTALL_ROOT)/linux
 
 all:		$(SAMPLE).$(KERNEL_IMAGE) $(SAMPLE).dtb modules
 
-
 modules:
 	LDFLAGS="" $(MAKE) -C $(INSTALL_ROOT)/linux modules
 	LDFLAGS="" $(MAKE) INSTALL_MOD_PATH=`pwd`/$(RFS_BUILD_DIR) \
@@ -41,11 +40,13 @@ modules:
 	$(MAKE) -C $(KERNELDIR) $@
 	mv $(KERNEL_BOOT)/dts/$@ ./$@
 
-%.$(KERNEL_IMAGE):	%.kernel $(INSTALL_ROOT)/linux/Makefile
+%.$(KERNEL_IMAGE):	FORCE
 	cp -f $*.kernel $(INSTALL_ROOT)/linux/.config
 	$(MAKE) -C $(KERNELDIR) oldconfig
 	LDFLAGS="" $(MAKE) -C $(KERNELDIR) $(KERNEL_IMAGE) LOADADDR=0x80008000 ${RELEASE_BUILD_FLAGS}
 	cp -f $(KERNEL_BOOT)/$(KERNEL_IMAGE) $*.$(KERNEL_IMAGE)
+
+FORCE:
 
 clean:		kclean
 	rm -rf *.$(KERNEL_IMAGE) *.dtb \
