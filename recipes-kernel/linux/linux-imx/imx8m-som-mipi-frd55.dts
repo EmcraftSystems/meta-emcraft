@@ -97,10 +97,6 @@
 	status = "disabled";
 };
 
-&hdmi_cec {
-	status = "disabled";
-};
-
 &mipi_dsi_phy {
 	status = "okay";
 };
