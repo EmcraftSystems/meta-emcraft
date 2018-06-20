@@ -67,7 +67,7 @@ CONFIG_LINUX_S = "${WORKDIR}/linux"
 #CONFIG_LINUX_LOCALVERSION = "-imx8m-beta8"
 
 # Linux: Development build
-#CONFIG_SRC_URI_KERNEL = "git://ocean.emcraft.com/SR/git/A2F/linux-upstream.git;protocol=ssh;branch=imx8m-ga-4.9.51"
+#CONFIG_SRC_URI_KERNEL = "git://ocean.emcraft.com/SR/git/A2F/linux-upstream.git;protocol=ssh;branch=imx8m-ga-4.9.88"
 #CONFIG_LINUX_S = "${WORKDIR}/git"
 #CONFIG_LINUX_GIT_REV = "${AUTOREV}"
 
@@ -77,7 +77,7 @@ CONFIG_UBOOT_S = "${WORKDIR}/u-boot"
 # UBOOT_LOCALVERSION = "-imx8m-betaX"
 
 # U-Boot: development build
-#CONFIG_SRC_URI_UBOOT = "git://ocean.emcraft.com/SR/git/A2F/u-boot-vybrid.git;protocol=ssh;branch=imx8m-ga-4.9.51"
+#CONFIG_SRC_URI_UBOOT = "git://ocean.emcraft.com/SR/git/A2F/u-boot-vybrid.git;protocol=ssh;branch=imx8m-ga-4.9.88"
 #CONFIG_UBOOT_S = "${WORKDIR}/git"
 #CONFIG_UBOOT_GIT_REV = "${AUTOREV}"
 
@@ -87,7 +87,7 @@ CONFIG_SRC_URI_IMXMKIM = "file://imx-mkimage-emcraft.tar.gz"
 CONFIG_IMXMKIM_S = "${WORKDIR}/imx-mkimage"
 
 # imx-mkimage: development build
-#CONFIG_SRC_URI_IMXMKIM = "git://ocean.emcraft.com/SR/git/A2F/imx-mkimage.git;protocol=ssh;branch=imx8m-ga-4.9.51"
+#CONFIG_SRC_URI_IMXMKIM = "git://ocean.emcraft.com/SR/git/A2F/imx-mkimage.git;protocol=ssh;branch=imx8m-ga-4.9.88"
 #CONFIG_IMXMKIM_S = "${WORKDIR}/git"
 #CONFIG_IMXMKIM_GIT_REV = "${AUTOREV}"
 

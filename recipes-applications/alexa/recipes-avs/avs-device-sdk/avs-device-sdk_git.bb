@@ -20,7 +20,8 @@ SRC_URI[melodic01short.md5sum] = "fa0a26a6ec836974d853631e26036ed3"
 SRC_URI[melodic02tth.md5sum] = "0c943e4d49907bb345277656c37e55db"
 SRC_URI[melodic02short.md5sum] = "4638324a21d6264f0dc2c6d586371da8"
 
-SRCREV = "56c26e85888992f2a78f685d26295c14d9c87718"
+# For v1.7.1 alexa-client-sdk
+SRCREV = "32f85e26a14149ab3d693f1cf5b44eacd43118d2"
 #SRCREV = "${AUTOREV}"
 
 INSANE_SKIP_${PN} = "dev-so"
