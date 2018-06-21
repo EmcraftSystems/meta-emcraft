@@ -22,6 +22,7 @@ IMAGE_INSTALL += "\
 	      glibc-utils	\
 	      linux-firmware-iwlwifi-8265 \
 	      linux-firmware-intel-8265 \
+	      linux-firmware-qca \
 	      "
 
 # To exclude a package or group from the image:
