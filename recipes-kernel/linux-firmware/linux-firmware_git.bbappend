@@ -18,6 +18,10 @@ do_install_append () {
     install -d -m 0755 ${D}${nonarch_base_libdir}/firmware/intel
     cp ${WORKDIR}/ibt-12-16.ddc ${D}${nonarch_base_libdir}/firmware/intel
     cp ${WORKDIR}/ibt-12-16.sfi ${D}${nonarch_base_libdir}/firmware/intel
+    # Copy QCA BT FIRMWARE
+    ln -sf qca/nvm_00130302.bin ${D}${nonarch_base_libdir}/firmware/nvm_tlv_3.2.bin
+    ln -sf qca/rampatch_00130302.bin ${D}${nonarch_base_libdir}/firmware/rampatch_tlv_3.2.tlv
+
 }
 
 PACKAGES =+ "${PN}-intel-8265"
@@ -26,3 +30,8 @@ FILES_${PN}-intel-8265 = " \
   ${nonarch_base_libdir}/firmware/intel/ibt-12-16.ddc \
   ${nonarch_base_libdir}/firmware/intel/ibt-12-16.sfi \
   "
+
+FILES_${PN}-qca += " \
+  ${nonarch_base_libdir}/firmware/nvm_tlv_3.2.bin \
+  ${nonarch_base_libdir}/firmware/rampatch_tlv_3.2.tlv \
+"
