@@ -865,7 +865,7 @@
 	assigned-clock-parents = <&clk IMX8MQ_CLK_25M>;
 	fsl,uart-has-rtscts;
 	resets = <&modem_reset>;
-	status = "okay";
+	status = "disabled";
 };
 
 &usdhc1 {
