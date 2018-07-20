@@ -628,7 +628,7 @@
 				regulator-boot-on;
 				regulator-always-on;
 			};
-
+#if 0
 			buck7_reg: regulator@6 {
 				reg = <6>;
 				regulator-compatible = "buck7";
@@ -637,7 +637,7 @@
 				regulator-boot-on;
 				regulator-always-on;
 			};
-
+#endif
 			buck8_reg: regulator@7 {
 				reg = <7>;
 				regulator-compatible = "buck8";
