@@ -525,7 +525,7 @@
 
 		pinctrl_pmic: pmicirq {
 			fsl,pins = <
-				MX8MQ_IOMUXC_GPIO1_IO12_GPIO1_IO12	0x41 /*0x17059*/
+				MX8MQ_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x41 /*0x17059*/
 			>;
 		};
 
@@ -623,9 +623,9 @@
 	pmic: bd71837@4b {
 		reg = <0x4b>;
 		compatible = "rohm,bd71837";
-		/* PMIC BD71837 PMIC_nINT GPIO1_IO12 */
+		/* PMIC BD71837 PMIC_nINT GPIO1_IO03 */
 		pinctrl-0 = <&pinctrl_pmic>;
-		gpio_intr = <&gpio1 12 GPIO_ACTIVE_LOW>;
+		gpio_intr = <&gpio1 3 GPIO_ACTIVE_LOW>;
 
 		bd71837,pmic-buck1-uses-i2c-dvs;
 		bd71837,pmic-buck1-dvs-voltage = <900000>, <850000>, <800000>; /* VDD_SOC: Run-Idle-Suspend */
