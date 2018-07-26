@@ -97,8 +97,7 @@ do_install() {
 
     cp -r -L ${S} ${D}/${AVS_DIR}/avs-device-sdk
     cd ${D}/${AVS_DIR}/avs-device-sdk
-    git repack -a -d
-    rm .git/objects/info/alternates
+    rm -rf .git
 
     install -d ${D}${systemd_system_unitdir}
     install ${WORKDIR}/amazon-alexa.service ${D}${systemd_system_unitdir}
