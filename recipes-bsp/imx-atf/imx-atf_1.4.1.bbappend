@@ -6,4 +6,5 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 SRC_URI += " \
 	file://0001-ATF-support-to-different-LPDDR4-configurations.patch \
 	file://imx-atf-dont-wait-forever-industrial.patch \
+	file://disable-1n14w.patch \
 	"
