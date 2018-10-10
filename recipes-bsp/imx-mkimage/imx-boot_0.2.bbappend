@@ -18,6 +18,9 @@ require imx-mkimage-emcraft.inc
 # Redefine the build target
 IMXBOOT_TARGETS_mx8mq := "flash_evk"
 
+# The recipe doesn't build without this line on Fedora 28 for some reason
+EXTRA_OEMAKE += "CFLAGS="
+
 do_compile () {
     if [ "${SOC_TARGET}" = "iMX8M" ]; then
         echo "8MQ DDR4L IMX8M-SOM boot binary build"
@@ -52,7 +55,7 @@ do_compile () {
     # mkimage for i.MX8
     for target in ${IMXBOOT_TARGETS}; do
         echo "building ${SOC_TARGET} - ${target}"
-        make SOC=${SOC_TARGET} ${target}
+        oe_runmake SOC=${SOC_TARGET} ${target}
         if [ -e "${S}/${SOC_TARGET}/flash.bin" ]; then
             cp ${S}/${SOC_TARGET}/flash.bin ${S}/${BOOT_CONFIG_MACHINE}-${target}
         fi
