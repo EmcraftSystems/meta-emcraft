@@ -36,6 +36,12 @@
 	model = "Emcraft i.MX8M SOM";
 	compatible = "emcraft,imx8m-som", "fsl,imx8mq";
 
+	psci {
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_pwr_en>;
+		suspend-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
+	};
+
 	aliases {
 	    spi0 = &ecspi1;
 	};
@@ -142,13 +148,11 @@
 		btn1 {
 			label = "BTN 1";
 			gpios = <&gpio4 21 GPIO_ACTIVE_LOW>;
-			gpio-key,wakeup;
 			linux,code = <KEY_VOLUMEUP>;
 		};
 		btn2 {
 			label = "BTN 2";
 			gpios = <&gpio4 22 GPIO_ACTIVE_LOW>;
-			gpio-key,wakeup;
 			linux,code = <KEY_VOLUMEDOWN>;
 		};
 	};
@@ -549,6 +553,12 @@
 			fsl,pins = <
 				MX8MQ_IOMUXC_SAI2_RXFS_GPIO4_IO21	0x16
 				MX8MQ_IOMUXC_SAI2_RXC_GPIO4_IO22	0x16
+			>;
+		};
+
+		pinctrl_pwr_en: pwren {
+			fsl,pins = <
+				MX8MQ_IOMUXC_GPIO1_IO08_GPIO1_IO8	0x16
 			>;
 		};
 	};
