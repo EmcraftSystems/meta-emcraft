@@ -1,5 +1,5 @@
---- opkg-utils-0.3.5.orig/opkg-utils	2018-06-16 12:54:53.581191934 +0300
-+++ opkg-utils-0.3.5/opkg-build	2018-06-16 13:22:28.321938270 +0300
+--- a/opkg-build	2018-06-16 12:54:53.581191934 +0300
++++ b/opkg-build	2018-06-16 13:22:28.321938270 +0300
 @@ -131,8 +131,8 @@ You probably want to chown these to a sy
  	disallowed_filename=`disallowed_field Filename`
  	[ "$?" -ne 0 ] && PKG_ERROR=1
@@ -11,8 +11,8 @@
  		PKG_ERROR=1;
  	fi
  
---- opkg-utils-0.3.5.orig/opkg-buildpackage	2017-01-30 22:52:45.000000000 +0300
-+++ opkg-utils-0.3.5/opkg-buildpackage	2018-06-16 13:23:29.985668241 +0300
+--- a/opkg-buildpackage	2017-01-30 22:52:45.000000000 +0300
++++ b/opkg-buildpackage	2018-06-16 13:23:29.985668241 +0300
 @@ -65,8 +65,8 @@ pkg_appears_sane_control() {
  	required_field Maintainer >/dev/null
  	required_field Description >/dev/null

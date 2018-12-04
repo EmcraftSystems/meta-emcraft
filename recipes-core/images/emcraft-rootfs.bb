@@ -3,7 +3,7 @@
 
 require recipes-fsl/images/fsl-image-qt5-validation-imx.bb
 
-hostname = "imx8m-som"
+hostname = "imx8mmini-evk"
 
 IMAGE_INSTALL += "\
 	      usbutils	\
@@ -13,17 +13,14 @@ IMAGE_INSTALL += "\
 	      qtmultimedia	\
 	      qtcanvas3d	\
 	      qt5-emcraft-demo	\
-	      avs-device-sdk	\
 	      socat	\
 	      links	\
 	      qtserialport	\
 	      flashrom	\
 	      openssh-sftp-server	\
 	      glibc-utils	\
-	      linux-firmware-iwlwifi-8265 \
-	      linux-firmware-intel-8265 \
-	      linux-firmware-qca \
 	      "
+#??	      avs-device-sdk
 
 # To exclude a package or group from the image:
 # PACKAGE_EXCLUDE = "packagegroup-fsl-tools-testapps i2c-tools"

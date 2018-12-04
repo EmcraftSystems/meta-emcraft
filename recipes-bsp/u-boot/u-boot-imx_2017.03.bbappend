@@ -4,10 +4,10 @@
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-DESCRIPTION = "i.MX U-Boot suppporting Emcraft IMX8M-SOM board."
-SRC_URI = "${CONFIG_SRC_URI_UBOOT}"
+#DESCRIPTION = "Emcraft version of U-Boot for IMX8MMINI EVK."
+#SRC_URI = "${CONFIG_SRC_URI_UBOOT}"
 
-S = "${CONFIG_UBOOT_S}"
-SRCREV = "${CONFIG_UBOOT_GIT_REV}"
+#S = "${CONFIG_UBOOT_S}"
+#SRCREV = "${CONFIG_UBOOT_GIT_REV}"
 
-SCMVERSION = "n"
+#SCMVERSION = "n"

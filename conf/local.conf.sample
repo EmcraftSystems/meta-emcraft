@@ -1,10 +1,10 @@
-MACHINE ??= 'imx8m-som'
+MACHINE ??= 'imx8mmevk'
 DISTRO ?= 'fsl-imx-wayland'
 PACKAGE_CLASSES ?= "package_ipk"
 EXTRA_IMAGE_FEATURES ?= "debug-tweaks package-management"
 USER_CLASSES ?= "buildstats image-mklibs image-prelink"
 PATCHRESOLVE = "noop"
-BB_DISKMON_DIRS = "\
+BB_DISKMON_DIRS ??= "\
     STOPTASKS,${TMPDIR},1G,100K \
     STOPTASKS,${DL_DIR},1G,100K \
     STOPTASKS,${SSTATE_DIR},1G,100K \
@@ -17,81 +17,5 @@ PACKAGECONFIG_append_pn-qemu-native = " sdl"
 PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
 CONF_VERSION = "1"
 
-DL_DIR ?= "/work/psl/IMX8M/nxp_imx8_alpha-workspace/downloads/"
-MX8_DOWNLOADS = "http://localhost"
+DL_DIR ?= "/mnt/build/downloads/"
 ACCEPT_FSL_EULA = "1"
-
-# Be nice to others
-#BB_NUMBER_THREADS = "1"
-#PARALLEL_MAKE = "-j 3"
-
-# Make the module auto-loads at the system start, for M4 deme.
-KERNEL_MODULE_AUTOLOAD += "imx_rpmsg_tty"
-
-# Alexa
-LICENSE_FLAGS_WHITELIST ?= "commercial_gst-fluendo-mp3 \
-                            commercial_gst-openmax \
-                            commercial_gst-plugins-ugly \
-                            commercial_gst-ffmpeg \
-                            commercial_gstreamer1.0-libav \
-                            commercial_lame \
-                            commercial_libav \
-                            commercial_libpostproc \
-                            commercial_mplayer2 \
-                            commercial_x264 \
-                            commercial_libmad \
-                            commercial_mpeg2dec \
-                            commercial_qmmp \
-                            oracle_java \
-                            commercial \
-			    "
-
-
-PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
-PREFERRED_PROVIDER_jpeg-native = "libjpeg-turbo-native"
-# End Alexa
-
-# These went to bbappaneds in the layer
-#PACKAGECONFIG_append_pn-qtbase = " gif"
-#PACKAGECONFIG_append_pn-qtmultimedia = " alsa gstreamer"
-
-# Sources Configuration Section
-
-#PREFERRED_VERSION_qt5-emcraft-demo = "git"
-# For release
-PREFERRED_VERSION_qt5-emcraft-demo = "0.9"
-
-# Linux: release version builds from tarballs
-CONFIG_SRC_URI_KERNEL = "file://linux-emcraft-${PV}-mx8.tar.gz"
-CONFIG_LINUX_S = "${WORKDIR}/linux"
-#CONFIG_LINUX_LOCALVERSION = "-imx8m-beta8"
-
-# Linux: Development build
-#CONFIG_SRC_URI_KERNEL = "git://ocean.emcraft.com/SR/git/A2F/linux-upstream.git;protocol=ssh;branch=imx8m-ga-4.9.88"
-#CONFIG_LINUX_S = "${WORKDIR}/git"
-#CONFIG_LINUX_GIT_REV = "${AUTOREV}"
-
-# U-Boot: release version builds from tarballs
-CONFIG_SRC_URI_UBOOT = "file://u-boot-emcraft-${PV}-mx8.tar.gz"
-CONFIG_UBOOT_S = "${WORKDIR}/u-boot"
-# UBOOT_LOCALVERSION = "-imx8m-betaX"
-
-# U-Boot: development build
-#CONFIG_SRC_URI_UBOOT = "git://ocean.emcraft.com/SR/git/A2F/u-boot-vybrid.git;protocol=ssh;branch=imx8m-ga-4.9.88"
-#CONFIG_UBOOT_S = "${WORKDIR}/git"
-#CONFIG_UBOOT_GIT_REV = "${AUTOREV}"
-
-
-# imx-mkimage: release version builds from tarballs
-CONFIG_SRC_URI_IMXMKIM = "file://imx-mkimage-emcraft.tar.gz"
-CONFIG_IMXMKIM_S = "${WORKDIR}/imx-mkimage"
-
-# imx-mkimage: development build
-#CONFIG_SRC_URI_IMXMKIM = "git://ocean.emcraft.com/SR/git/A2F/imx-mkimage.git;protocol=ssh;branch=imx8m-ga-4.9.88"
-#CONFIG_IMXMKIM_S = "${WORKDIR}/git"
-#CONFIG_IMXMKIM_GIT_REV = "${AUTOREV}"
-
-# Force version without Wayland dependency
-#GRAPHICS_VERSION_mx8 = "6.2.4.p0.2"
-
-#EMCRAFT_DISTRO_VERSION ?= "(NXP ${DISTRO_VERSION})"
