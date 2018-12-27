@@ -1,5 +1,5 @@
 MACHINE ??= 'imx8mmevk'
-DISTRO ?= 'fsl-imx-wayland'
+DISTRO ?= 'fsl-imx-xwayland'
 PACKAGE_CLASSES ?= "package_ipk"
 EXTRA_IMAGE_FEATURES ?= "debug-tweaks package-management"
 USER_CLASSES ?= "buildstats image-mklibs image-prelink"
