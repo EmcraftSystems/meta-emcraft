@@ -1,4 +1,4 @@
-MACHINE ??= 'imx8mmevk'
+MACHINE ??= 'imx8mmsom'
 DISTRO ?= 'fsl-imx-xwayland'
 PACKAGE_CLASSES ?= "package_ipk"
 EXTRA_IMAGE_FEATURES ?= "debug-tweaks package-management"
@@ -28,3 +28,20 @@ RM_OLD_IMAGE = "1"
 # CONFIG_QTDEMO_BRANCH = "8mmini"
 # For release
 PREFERRED_VERSION_qt5-emcraft-demo = "0.9"
+
+# Linux: Development build
+#CONFIG_SRC_URI_KERNEL = "git://ocean.emcraft.com/SR/git/A2F/linux-upstream.git;protocol=ssh;branch=linux-imx8m-2.6.3"
+#CONFIG_LINUX_S = "${WORKDIR}/git"
+#CONFIG_LINUX_GIT_REV = "${AUTOREV}"
+
+# U-Boot: release version builds from tarballs
+CONFIG_SRC_URI_UBOOT = "file://u-boot-emcraft-${PV}-mx8.tar.gz"
+CONFIG_UBOOT_S = "${WORKDIR}/u-boot"
+#UBOOT_LOCALVERSION = "-imx8m-2.6.3"
+
+# U-Boot: development build
+#CONFIG_SRC_URI_UBOOT = "git://ocean.emcraft.com/SR/git/A2F/u-boot-vybrid.git;protocol=ssh;branch=linux-imx8m-2.6.3"
+#CONFIG_UBOOT_S = "${WORKDIR}/git"
+#CONFIG_UBOOT_GIT_REV = "${AUTOREV}"
+
+EMCRAFT_DISTRO_VERSION ?= "custom (NXP ${DISTRO_VERSION})"
