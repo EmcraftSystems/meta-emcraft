@@ -1,18 +1,18 @@
 diff --git a/core/arch/arm/plat-imx/conf.mk b/core/arch/arm/plat-imx/conf.mk
-index b05c7b6f..3bcbbc17 100644
+index fc934d3c..077f6b2e 100644
 --- a/core/arch/arm/plat-imx/conf.mk
 +++ b/core/arch/arm/plat-imx/conf.mk
-@@ -14,7 +14,7 @@ mx6sll-flavorlist = mx6sllevk
- mx7-flavorlist = mx7dsabresd
+@@ -15,7 +15,7 @@ mx7d-flavorlist = mx7dsabresd
+ mx7s-flavorlist = mx7swarp7
  mx7ulp-flavorlist = mx7ulpevk
  mx8m-flavorlist = mx8mqevk
 -mx8mm-flavorlist = mx8mmevk
 +mx8mm-flavorlist = mx8mmevk mx8mmsom
+ mx8qm-flavorlist = mx8qmmek mx8qmlpddr4arm2
+ mx8qx-flavorlist = mx8qxpmek mx8qxplpddr4arm2
  
- ifneq (,$(filter $(PLATFORM_FLAVOR),$(mx6ul-flavorlist)))
- $(call force,CFG_MX6,y)
-@@ -307,6 +307,10 @@ ifneq (,$(filter $(PLATFORM_FLAVOR),mx8mmevk))
- CFG_DDR_SIZE ?= 0x80000000
+@@ -448,6 +448,10 @@ CFG_DDR_SIZE ?= 0x80000000
+ CFG_UART_BASE ?= UART0_BASE
  endif
  
 +ifneq (,$(filter $(PLATFORM_FLAVOR),mx8mmsom))
@@ -23,10 +23,10 @@ index b05c7b6f..3bcbbc17 100644
  CFG_HWSUPP_MEM_PERM_WXN = n
  CFG_IMX_WDOG ?= y
 diff --git a/core/arch/arm/plat-imx/tzasc.c b/core/arch/arm/plat-imx/tzasc.c
-index 864f9ccd..c3774029 100644
+index b2b76530..b31b058b 100644
 --- a/core/arch/arm/plat-imx/tzasc.c
 +++ b/core/arch/arm/plat-imx/tzasc.c
-@@ -339,7 +339,7 @@ static int board_imx_tzasc_configure(vaddr_t addr)
+@@ -362,7 +362,7 @@ static int board_imx_tzasc_configure(vaddr_t addr)
  
  	return 0;
  }

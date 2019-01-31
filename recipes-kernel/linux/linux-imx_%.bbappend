@@ -2,7 +2,7 @@
 
 DESCRIPTION = "i.MX Linux suppporting Emcraft i.MX8M SOM boards."
 
-# This appends to meta-fsl-bsp-release/imx/meta-bsp/recipes-kernel/linux/linux-imx_4.9.51.bb
+# This appends to meta-fsl-bsp-release/imx/meta-bsp/recipes-kernel/linux/linux-imx_4%.bb
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
@@ -22,7 +22,7 @@ do_subst_cfg() {
 #cp -a ${WORKDIR}/*.dts ${S}/arch/arm64/boot/dts/
 #cp -a ${WORKDIR}/imx8m-som.kernel ${S}/arch/arm64/configs/defconfig
 
-addtask subst_cfg after do_unpack before do_copy_defconfig
+#addtask subst_cfg after do_unpack before do_copy_defconfig
 
 # Remove videodev2.h from the installed kernel headers, it is provided by other package.
 # Otherwise, bitbake complains.
