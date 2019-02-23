@@ -21,8 +21,9 @@ DL_DIR ?= "/mnt/build/downloads/"
 ACCEPT_FSL_EULA = "1"
 
 # Be nice to others
-# BB_NUMBER_THREADS = "2"
-# PARALLEL_MAKE = "-j 3"
+#BB_NUMBER_THREADS = "2"
+#PARALLEL_MAKE = "-j 3"
+
 # Remove the old image before the new one generated to save disk space
 RM_OLD_IMAGE = "1"
 
@@ -36,6 +37,7 @@ CONFIG_QTDEMO_BRANCH = "8mmini"
 CONFIG_SRC_URI_KERNEL = "git://ocean.emcraft.com/SR/git/A2F/linux-upstream.git;protocol=ssh;branch=imx8mmini-ga-4.14.78"
 CONFIG_LINUX_S = "${WORKDIR}/git"
 CONFIG_LINUX_GIT_REV = "${AUTOREV}"
+
 #CONFIG_SRC_URI_KERNEL = "file://linux-emcraft-${PV}-mx8mm.tar.gz"
 #CONFIG_LINUX_S = "${WORKDIR}/linux"
 #CONFIG_LINUX_LOCALVERSION = "-imx8mm-2.7.0"
@@ -51,3 +53,4 @@ CONFIG_UBOOT_S = "${WORKDIR}/git"
 CONFIG_UBOOT_GIT_REV = "${AUTOREV}"
 
 EMCRAFT_DISTRO_VERSION ?= "Emcraft (NXP ${DISTRO_VERSION})"
+
