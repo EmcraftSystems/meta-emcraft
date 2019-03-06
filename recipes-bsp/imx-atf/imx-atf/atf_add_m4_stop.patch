@@ -1,0 +1,44 @@
+diff --git a/plat/imx/common/include/fsl_sip.h b/plat/imx/common/include/fsl_sip.h
+index ddf9c02c..74260792 100644
+--- a/plat/imx/common/include/fsl_sip.h
++++ b/plat/imx/common/include/fsl_sip.h
+@@ -35,6 +35,7 @@
+ #define FSL_SIP_SRC			0xc2000005
+ #define FSL_SIP_SRC_M4_START		0x00
+ #define FSL_SIP_SRC_M4_STARTED		0x01
++#define FSL_SIP_SRC_M4_STOP		0x02
+ 
+ #define FSL_SIP_GET_SOC_INFO            0xc2000006
+ 
+diff --git a/plat/imx/imx8mm/misc.c b/plat/imx/imx8mm/misc.c
+index 9c2c0ace..34c7863d 100644
+--- a/plat/imx/imx8mm/misc.c
++++ b/plat/imx/imx8mm/misc.c
+@@ -39,6 +39,11 @@ int imx_src_handler(uint32_t smc_fid, u_register_t x1, u_register_t x2,
+ 	case FSL_SIP_SRC_M4_STARTED:
+ 		val = mmio_read_32(IMX_SRC_BASE + M4RCR);
+ 		return !(val & SRC_SCR_M4C_NON_SCLR_RST_MASK);
++	case FSL_SIP_SRC_M4_STOP:
++		val = mmio_read_32(IMX_SRC_BASE + M4RCR);
++		val |= SRC_SCR_M4C_NON_SCLR_RST_MASK;
++		mmio_write_32(IMX_SRC_BASE + M4RCR, val);
++		break;
+ 	default:
+ 		return SMC_UNK;
+ 
+diff --git a/plat/imx/imx8mq/src.c b/plat/imx/imx8mq/src.c
+index 4c7b0909..0baf2752 100644
+--- a/plat/imx/imx8mq/src.c
++++ b/plat/imx/imx8mq/src.c
+@@ -42,6 +42,11 @@ int imx_src_handler(uint32_t smc_fid, u_register_t x1, u_register_t x2,
+ 	case FSL_SIP_SRC_M4_STARTED:
+ 		val = mmio_read_32(IMX_SRC_BASE + M4RCR);
+ 		return !(val & SRC_SCR_M4C_NON_SCLR_RST_MASK);
++	case FSL_SIP_SRC_M4_STOP:
++		val = mmio_read_32(IMX_SRC_BASE + M4RCR);
++		val |= SRC_SCR_M4C_NON_SCLR_RST_MASK;
++		mmio_write_32(IMX_SRC_BASE + M4RCR, val);
++		break;
+ 	default:
+ 		return SMC_UNK;
+ 
