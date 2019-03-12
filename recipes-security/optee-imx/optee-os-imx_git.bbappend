@@ -6,5 +6,7 @@ DESCRIPTION = "OPTEE OS"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
+PLATFORM_FLAVOR_mx8mm	= "${@d.getVar('MACHINE')[1:]}"
+
 SRC_URI += " file://0001-add-imx8mm-som-support.patch \
 	"

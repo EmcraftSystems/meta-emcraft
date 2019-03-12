@@ -1,5 +1,5 @@
 diff --git a/core/arch/arm/plat-imx/conf.mk b/core/arch/arm/plat-imx/conf.mk
-index fc934d3c..077f6b2e 100644
+index fc934d3c..0c528464 100644
 --- a/core/arch/arm/plat-imx/conf.mk
 +++ b/core/arch/arm/plat-imx/conf.mk
 @@ -15,7 +15,7 @@ mx7d-flavorlist = mx7dsabresd
@@ -7,11 +7,11 @@ index fc934d3c..077f6b2e 100644
  mx7ulp-flavorlist = mx7ulpevk
  mx8m-flavorlist = mx8mqevk
 -mx8mm-flavorlist = mx8mmevk
-+mx8mm-flavorlist = mx8mmevk mx8mmsom
++mx8mm-flavorlist = mx8mmevk mx8mmsom mx8mmsom3gb mx8mmsom1gb
  mx8qm-flavorlist = mx8qmmek mx8qmlpddr4arm2
  mx8qx-flavorlist = mx8qxpmek mx8qxplpddr4arm2
  
-@@ -448,6 +448,10 @@ CFG_DDR_SIZE ?= 0x80000000
+@@ -448,6 +448,18 @@ CFG_DDR_SIZE ?= 0x80000000
  CFG_UART_BASE ?= UART0_BASE
  endif
  
@@ -19,11 +19,19 @@ index fc934d3c..077f6b2e 100644
 +CFG_DDR_SIZE ?= 0x80000000
 +endif
 +
++ifneq (,$(filter $(PLATFORM_FLAVOR),mx8mmsom3gb))
++CFG_DDR_SIZE ?= 0xC0000000
++endif
++
++ifneq (,$(filter $(PLATFORM_FLAVOR),mx8mmsom1gb))
++CFG_DDR_SIZE ?= 0x40000000
++endif
++
  ifeq ($(filter y, $(CFG_PSCI_ARM32)), y)
  CFG_HWSUPP_MEM_PERM_WXN = n
  CFG_IMX_WDOG ?= y
 diff --git a/core/arch/arm/plat-imx/tzasc.c b/core/arch/arm/plat-imx/tzasc.c
-index b2b76530..b31b058b 100644
+index b2b76530..6fa146fe 100644
 --- a/core/arch/arm/plat-imx/tzasc.c
 +++ b/core/arch/arm/plat-imx/tzasc.c
 @@ -362,7 +362,7 @@ static int board_imx_tzasc_configure(vaddr_t addr)
@@ -35,3 +43,98 @@ index b2b76530..b31b058b 100644
  static int board_imx_tzasc_configure(vaddr_t addr)
  {
  	tzc_init(addr);
+@@ -383,6 +383,94 @@ static int board_imx_tzasc_configure(vaddr_t addr)
+ 		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_4M) |
+ 		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_ALL);
+ 
++#ifdef CFG_DRM_SECURE_DATA_PATH
++	tzc_configure_region(4, CFG_TEE_SDP_MEM_BASE - DRAM0_BASE,
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_32M) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_ALL);
++#ifdef CFG_RDC_SECURE_DATA_PATH
++	/* Decoded buffer size is 128MB */
++	tzc_configure_region(5, CFG_RDC_DECODED_BUFFER - DRAM0_BASE,
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_128M) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_ALL);
++#endif
++#endif
++
++	tzc_set_action(3);
++
++	tzc_dump_state();
++
++	return 0;
++}
++#elif defined(PLATFORM_FLAVOR_mx8mmsom3gb)
++static int board_imx_tzasc_configure(vaddr_t addr)
++{
++	tzc_init(addr);
++
++	tzc_configure_region(0, 0x00000000, TZC_ATTR_SP_S_RW);
++
++	/* 
++	 * Like with i.MX 8MQ, The DDR mapping seems to start at 0.
++	 */
++	tzc_configure_region(1, 0x00000000,
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_4G) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_NS_RW
++		| TZC_ATTR_SUBREGION_DIS(6)
++		| TZC_ATTR_SUBREGION_DIS(7)
++		);
++
++	tzc_configure_region(2, (CFG_TZDRAM_START - DRAM0_BASE),
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_32M) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_S_RW);
++	tzc_configure_region(3, (CFG_SHMEM_START  - DRAM0_BASE),
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_4M) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_ALL);
++
++#ifdef CFG_DRM_SECURE_DATA_PATH
++	tzc_configure_region(4, CFG_TEE_SDP_MEM_BASE - DRAM0_BASE,
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_32M) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_ALL);
++#ifdef CFG_RDC_SECURE_DATA_PATH
++	/* Decoded buffer size is 768MB */
++	tzc_configure_region(5, CFG_RDC_DECODED_BUFFER - DRAM0_BASE,
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_512M) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_ALL);
++	tzc_configure_region(6, CFG_RDC_DECODED_BUFFER - DRAM0_BASE + 0x20000000,
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_256M) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_ALL);
++#endif
++#endif
++
++	tzc_set_action(3);
++
++	tzc_dump_state();
++
++	return 0;
++}
++#elif defined(PLATFORM_FLAVOR_mx8mmsom1gb)
++static int board_imx_tzasc_configure(vaddr_t addr)
++{
++	tzc_init(addr);
++
++	tzc_configure_region(0, 0x00000000, TZC_ATTR_SP_S_RW);
++
++	/* 
++	 * Like with i.MX 8MQ, The DDR mapping seems to start at 0.
++	 */
++	tzc_configure_region(1, 0x00000000,
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_2G) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_NS_RW
++		| TZC_ATTR_SUBREGION_DIS(4)
++		| TZC_ATTR_SUBREGION_DIS(5)
++		| TZC_ATTR_SUBREGION_DIS(6)
++		| TZC_ATTR_SUBREGION_DIS(7));
++
++	tzc_configure_region(2, (CFG_TZDRAM_START - DRAM0_BASE),
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_32M) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_S_RW);
++	tzc_configure_region(3, (CFG_SHMEM_START  - DRAM0_BASE),
++		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_4M) |
++		TZC_ATTR_REGION_EN_MASK | TZC_ATTR_SP_ALL);
++
+ #ifdef CFG_DRM_SECURE_DATA_PATH
+ 	tzc_configure_region(4, CFG_TEE_SDP_MEM_BASE - DRAM0_BASE,
+ 		TZC_ATTR_REGION_SIZE(TZC_REGION_SIZE_32M) |

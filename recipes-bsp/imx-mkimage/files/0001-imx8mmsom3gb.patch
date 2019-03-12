@@ -1,0 +1,13 @@
+diff --git a/iMX8M/soc.mak b/iMX8M/soc.mak
+index 1b6e357..22712a2 100644
+--- a/iMX8M/soc.mak
++++ b/iMX8M/soc.mak
+@@ -20,7 +20,7 @@ PAD_IMAGE = ../scripts/pad_image.sh
+ ifeq ($(SOC),iMX8MM)
+ PLAT = imx8mm
+ HDMI = no
+-TEE_LOAD_ADDR = 0xbe000000
++TEE_LOAD_ADDR = 0xfe000000
+ ATF_LOAD_ADDR = 0x00920000
+ VAL_BOARD = val
+ #define the F(Q)SPI header file
