@@ -19,6 +19,7 @@ IMAGE_INSTALL += "\
 	      flashrom	\
 	      openssh-sftp-server	\
 	      glibc-utils	\
+	      qtquick1 \
 	      "
 #??	      avs-device-sdk
 
