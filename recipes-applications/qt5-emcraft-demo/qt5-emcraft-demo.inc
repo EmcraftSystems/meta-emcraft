@@ -13,6 +13,7 @@ inherit qmake5 systemd
 SYSTEMD_SERVICE_qt5-emcraft-demo="${PN}.service"
 
 do_install_append () {
+	bzip2 -d ${D}${datadir}/Qt5_EmcraftDemo/content/demo.mp4.bz2
 	install -d ${D}${systemd_system_unitdir}
 	install ${WORKDIR}/qt5-emcraft-demo.service ${D}${systemd_system_unitdir}
 }
