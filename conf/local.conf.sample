@@ -54,3 +54,5 @@ CONFIG_UBOOT_GIT_REV = "${AUTOREV}"
 
 EMCRAFT_DISTRO_VERSION ?= "Emcraft (NXP ${DISTRO_VERSION})"
 
+# Enable for Fedora 29 or the distro with glibc 2.28 or newer
+# CONFIG_GLIBC_228 = "1"
