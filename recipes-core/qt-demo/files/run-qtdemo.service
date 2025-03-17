@@ -1,0 +1,15 @@
+[Unit]
+Description=Run Qt example
+
+After=graphical.target
+
+[Service]
+Type=oneshot
+Environment="QT_QPA_PLATFORM=wayland-egl"
+Environment="WAYLAND_DISPLAY=/run/wayland-0"
+ExecStart=/usr/sbin/run-qtdemo.sh
+RemainAfterExit=true
+StandardOutput=journal
+
+[Install]
+WantedBy=graphical.target
