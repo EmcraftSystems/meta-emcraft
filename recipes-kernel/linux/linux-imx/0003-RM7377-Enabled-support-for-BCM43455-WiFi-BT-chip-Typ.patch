@@ -1,0 +1,19 @@
+From c17795ddaf2e1134dfb4ccc22b1556d1c0a90861 Mon Sep 17 00:00:00 2001
+From: Sergei Poselenov <sposelenov@emcraft.com>
+Date: Wed, 30 Apr 2025 17:45:10 +0200
+Subject: [PATCH] RM7377: Enabled support for BCM43455 WiFi/BT chip ("Type
+ 1MW").
+
+---
+ arch/arm64/configs/imx_v8_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/configs/imx_v8_defconfig b/arch/arm64/configs/imx_v8_defconfig
+index 26a66ad05c38..fc165892d4ec 100644
+--- a/arch/arm64/configs/imx_v8_defconfig
++++ b/arch/arm64/configs/imx_v8_defconfig
+@@ -1206,3 +1206,4 @@ CONFIG_MEMTEST=y
+ CONFIG_VHOST_NET=m
+ CONFIG_IMX_ISPMU=m
+ CONFIG_IMX_ISP_REMOTEPROC=m
++CONFIG_BRCMFMAC=m
