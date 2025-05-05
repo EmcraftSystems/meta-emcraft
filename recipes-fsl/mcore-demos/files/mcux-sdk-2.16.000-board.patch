@@ -1,0 +1,15 @@
+diff --git a/boards/evkmimx8mm/board.h b/boards/evkmimx8mm/board.h
+index cee60e108..bb5d69f07 100644
+--- a/boards/evkmimx8mm/board.h
++++ b/boards/evkmimx8mm/board.h
+@@ -19,8 +19,8 @@
+ /* The UART to use for debug messages. */
+ #define BOARD_DEBUG_UART_TYPE     kSerialPort_Uart
+ #define BOARD_DEBUG_UART_BAUDRATE 115200u
+-#define BOARD_DEBUG_UART_BASEADDR UART4_BASE
+-#define BOARD_DEBUG_UART_INSTANCE 4U
++#define BOARD_DEBUG_UART_BASEADDR UART3_BASE
++#define BOARD_DEBUG_UART_INSTANCE 3U
+ #define BOARD_DEBUG_UART_CLK_FREQ                                                           \
+     CLOCK_GetPllFreq(kCLOCK_SystemPll1Ctrl) / (CLOCK_GetRootPreDivider(kCLOCK_RootUart4)) / \
+         (CLOCK_GetRootPostDivider(kCLOCK_RootUart4)) / 10
